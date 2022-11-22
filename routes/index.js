@@ -16,8 +16,17 @@ const verifyLogin = (req, res, next)=>{
 router.get('/', function(req, res, next) {
   res.render('index');
 });
+router.get('/home', (req, res)=>{
+  res.render('home',{layout:'logedLayout'})
+})
 router.get('/register',(req, res)=>{
   res.render('register')
+})
+router.get('/points',(req, res)=>{
+  res.render('points',{layout:'logedLayout'})
+})
+router.get('/profile',(req, res)=>{
+  res.render('profile',{layout:'logedLayout'})
 })
 router.post('/register',async(req,res)=>{
   const {name, branch, year, email, password, team} = req.body
@@ -51,14 +60,14 @@ router.post('login',(req, res)=>{
     return res.send('necessary details are not filled')
   }
   try{
-    const users = users.findOne({email:email})
+    const user = users.findOne({email:email})
     const hashedPass = ''
-    if(!users){
+    if(!user){
       return res.send('user doesnt exist')
     }else{
       if(password == hashedPass){
         req.session.logedIn = true;
-        req.session.userId = users._id;
+        req.session.userId = user._id;
         res.redirect('/panel')
       }else{
         return res.send('password incorrect')

@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Nunito:ital,wght@0,300;0,400;0,600;1,700&family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300&display=swap');
+
+:root{
+    --red:#ff3838;
+    --light-color:#961b43;
+    --green:rgb(68, 254, 31);
+    --blue:rgb(31, 57, 254);
+}
+*{
+    font-family: 'Nunito',sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all 0.2s linear;
+    font-size: 2rem;
+}
+*::selection{
+    background: var(--red);
+    color: #fff;
+}
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+body{
+    background: #f7f7f7;
+}
+.green{
+    background: var(--green);
+}
+.blue{
+    background: var(--blue);
+}
+section{
+    padding: 2rem 9%;
+}
+header{
+    position: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem 9%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #666;
+}
+header .logo i{
+    padding-right: 0.5rem;
+    color: var(--red);
+}
+
+header .navbar a{
+    font-size: 2rem;
+    margin-left: 2rem;
+    color: #666;
+}
+header .navbar a:hover{
+    color: var(--red);
+}
+.home{
+    height: 100vh;
+}
+#menu-bar{
+    font-size: 3rem;
+    cursor: pointer;
+    color: #666;
+    border: 1px solid #666;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1.5rem;
+    display: none;
+}
+
+.match-card{
+    display: flex;
+    width: 92%;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    background: rgb(11, 45, 124);
+    margin: 2rem;
+    color: #fff;
+}
+.match-card .predict{
+    width: 100%;
+    display: flex;
+}
+.match-card .predict .predicter{
+    text-align: center;
+    flex: 1 1 30px;
+    padding: 1.2rem 0;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 0.1rem;
+}
+.match-card .match{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.match-card .match img{
+    width: 10rem;
+    height: 10rem;
+}
+
+.table{
+    background: rgb(230, 230, 230);
+}
+.table .member{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    align-items: center;
+}
+.table .member img{
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background-position: center;
+
+}
+.table .member:nth-last-child(even){
+    background: #fff;
+}
+.table .member .name span{
+    padding-left: 1rem;
+}
+.table .member .score span{
+    padding-right: 1rem;
+}
+.table .member .name .name-container{
+    display: inline-block;
+}
+.profile-card{
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgb(236, 236, 236);
+}
+.profile-card .image{
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+}
+.profile-card .image img{
+    width: 10rem;
+    text-align: center;
+}
+.profile-card .content input[type="text"]{
+    width: 100%;
+    padding: 1rem 1rem;
+    margin: 0.3rem 0;
+}
+.profile-card .content .options{
+    display: flex;
+}
+
+.profile-card .content .options .delete{
+    flex: 1 1 30px;
+    text-align: center;
+    padding: 1rem 0;
+    border: 1px solid #333;
+    background: #ff3838;
+    color: #fff;
+}
+.profile-card .content .options .delete a{
+    color: #fff;
+}
+.profile-card .content .options input{
+    flex: 1 1 30px;
+    text-align: center;
+    padding: 1rem 0;
+    border: 1px solid #333;
+    background: var(--green);
+    color: #fff;
+}
+
+
+.footer{
+    background: rgb(242, 242, 242);
+    text-align: center;
+    border-top: 1px solid #333;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    padding: 2rem 0;
+}
+.footer .icons{
+    flex: 1 1 10rem;
+    border-right: 1px solid #666;
+}
+.footer .icons a{
+    color: #222;
+}
+
+.title{
+    text-align: center;
+    font-size: 4rem;
+    padding: 1rem;
+    color: #666;
+}
+
+
+
+
+
+@media(max-width:650px){
+    html{
+        font-size: 50%;
+    }
+    section{
+        padding: 1rem 0;
+    }
+    header{
+        padding: 2rem 2%;
+    }
+    .order .row form .inputBox input{
+        width: 100%;
+    }
+}

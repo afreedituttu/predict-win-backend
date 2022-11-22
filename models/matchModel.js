@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const match = mongoose.Schema({
     team1:{
         type:String,
-        required:ture
+        required:true
     },
     team2:{
         type:String,
-        required:ture
+        required:true
     },
     active:{
         type:Boolean,
@@ -18,6 +18,6 @@ const match = mongoose.Schema({
     }
 })
 
-const matchModel = mongoose.model('users',match)
+const matchModel = mongoose.model('matches',match)
 
 module.exports = matchModel

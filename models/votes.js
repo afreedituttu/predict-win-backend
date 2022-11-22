@@ -11,6 +11,6 @@ const votes = mongoose.Schema({
     }
 })
 
-const votesModel = mongoose.model('admin',admin)
+const votesModel = mongoose.model('votes',votes)
 
 module.exports = votesModel
