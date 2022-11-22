@@ -22,31 +22,48 @@ router.get('/home', (req, res)=>{
 router.get('/register',(req, res)=>{
   res.render('register')
 })
-router.get('/points',(req, res)=>{
-  res.render('points',{layout:'logedLayout'})
+router.get('/points',async(req, res)=>{
+  try{
+    const user = await users.find({}).lean().sort({points:-1})
+    res.render('points',{layout:'logedLayout.hbs',user:user})
+  }catch(err){
+    console.log(err);
+    res.send('internal error')
+  }
 })
-router.get('/profile',(req, res)=>{
-  res.render('profile',{layout:'logedLayout'})
+router.get('/profile',verifyLogin,async(req, res)=>{
+  const userId = req.session.userId;
+  console.log(userId);
+  try{
+    const user = await users.findOne({_id:userId}).lean();
+    console.log(user);
+    res.render('profile',{layout:'logedLayout.hbs', user:user})
+  }catch(err){
+    console.log(err);
+    res.send('internal error')
+  }
+})
+router.get('/login',(req, res)=>{
+  res.render('login',{layout:'mainLayout'})
 })
 router.post('/register',async(req,res)=>{
-  const {name, branch, year, email, password, team} = req.body
+  const {name, team, email, branch, password} = req.body
 
-  if(!name || !email || !password ){
+  if(!name || !email || !password || !team){
     return res.send('necessary details are not filled')
   }
   try{
     const newUser = new users({
-      name:name,
-      branch:branch,
-      year:year,
-      email:email,
-      password:password,
-      team:team
+      name,
+      team,
+      email,
+      branch,
+      password
     })
     await newUser.save().then((data)=>{
       return res.send('registered')
     }).catch((err)=>{
-      console.log('reg unsuccessfull');
+      console.log(err);
       return res.send('error occured')
     })
   }catch(err){
@@ -54,21 +71,22 @@ router.post('/register',async(req,res)=>{
     return res.send('some internal error occured')
   }
 })
-router.post('login',(req, res)=>{
+router.post('/login',async(req, res)=>{
   const {email, password} = req.body;
   if(!email || !password){
     return res.send('necessary details are not filled')
   }
   try{
-    const user = users.findOne({email:email})
-    const hashedPass = ''
+    const user = await users.findOne({email:email})
     if(!user){
       return res.send('user doesnt exist')
     }else{
-      if(password == hashedPass){
+      console.log(user.password);
+      if(password == user.password){
+        console.log(req.session);
         req.session.logedIn = true;
         req.session.userId = user._id;
-        res.redirect('/panel')
+        res.redirect('/home')
       }else{
         return res.send('password incorrect')
       }

@@ -9,13 +9,9 @@ const User = mongoose.Schema({
         type:String,
         required:true
     },
-    year:{
-        type:Number,
-        enum:[1,2,3,4]
-    },
     branch:{
         type:String,
-        enum:['cse','ece','me','civil']
+        required:true
     },
     password:{
         type:String,
@@ -24,10 +20,15 @@ const User = mongoose.Schema({
     points:{
         type:Number,
         required:true,
-        default:0
+        default:5
     },
-    image:{
+    team:{
         type:String,
+        required:true
+    },
+    active:{
+        type:Boolean,
+        default:true
     }
 })
 
